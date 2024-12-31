@@ -8,7 +8,7 @@ namespace nn::fs {
     Mount SD card. Must have explicit permission.
     mount: drive to mount to.
 */
-bool MountSdCardForDebug(const char* mount);
+Result MountSdCardForDebug(const char* mount);
 
 Result MountSdCard(const char* mountPoint);
 bool IsSdCardInserted();

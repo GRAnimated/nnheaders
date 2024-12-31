@@ -276,6 +276,14 @@ struct TouchState {
     s32 mReserved;
 };
 
+template <size_t T>
+struct TouchScreenState {
+    u64 samplingNumber = 0;
+    s32 count = T;
+    char reserved[4] = {};
+    TouchState touches[T] = {};
+};
+
 struct KeyboardState {
     u64 mSamplingNumber;
     nn::util::BitFlagSet<32, KeyboardModifier> mModifiers;
@@ -353,6 +361,9 @@ void InitializeKeyboard();
 
 void GetMouseState(MouseState*);
 void GetKeyboardState(KeyboardState*);
+
+template <size_t T>
+void GetTouchScreenState(nn::hid::TouchScreenState<T>*);
 
 }  // namespace hid
 }  // namespace nn
