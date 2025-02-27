@@ -154,8 +154,19 @@ if(NN_GFX_TARGET)
   list(APPEND NN_SOURCES ${NN_GFX_SOURCES})
 endif()
 
+set(NN_NEX_SOURCES
+  src/NintendoSDK-NEX/OnlineCore/src/Core/Chrono.cpp
+  src/NintendoSDK-NEX/OnlineCore/src/Core/ConsoleIO.cpp
+  src/NintendoSDK-NEX/OnlineCore/src/Core/LocalClock.cpp
+  src/NintendoSDK-NEX/OnlineCore/src/Core/MemoryManager.cpp
+  src/NintendoSDK-NEX/OnlineCore/src/Core/Plugin.cpp
+  src/NintendoSDK-NEX/OnlineCore/src/Core/RootObject.cpp
+  src/NintendoSDK-NEX/OnlineCore/src/Core/VersionInfo.cpp
+)
+
 add_library(NintendoSDK OBJECT
   ${NN_SOURCES}
+  ${NN_NEX_SOURCES}
 
   include/nn/types.h
   include/nn/fs.h
