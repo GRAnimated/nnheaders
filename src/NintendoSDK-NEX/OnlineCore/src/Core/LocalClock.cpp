@@ -1,5 +1,5 @@
-#include "OnlineCore/src/Core/LocalClock.h"
-#include "OnlineCore/src/Core/Time.h"
+#include "Core/LocalClock.h"
+#include "Platform/Core/Time.h"
 
 namespace nn::nex {
 LocalClock::LocalClock() {

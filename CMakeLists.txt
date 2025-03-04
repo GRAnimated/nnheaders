@@ -154,20 +154,11 @@ if(NN_GFX_TARGET)
   list(APPEND NN_SOURCES ${NN_GFX_SOURCES})
 endif()
 
-set(NN_NEX_SOURCES
-  src/NintendoSDK-NEX/OnlineCore/src/Core/Chrono.cpp
-  src/NintendoSDK-NEX/OnlineCore/src/Core/ConsoleIO.cpp
-  src/NintendoSDK-NEX/OnlineCore/src/Core/LocalClock.cpp
-  src/NintendoSDK-NEX/OnlineCore/src/Core/MemoryManager.cpp
-  src/NintendoSDK-NEX/OnlineCore/src/Core/Plugin.cpp
-  src/NintendoSDK-NEX/OnlineCore/src/Core/RootObject.cpp
-  src/NintendoSDK-NEX/OnlineCore/src/Core/VersionInfo.cpp
-  src/NintendoSDK-NEX/OnlineCore/src/Platform/Core/Result.cpp
-)
+file(GLOB_RECURSE NEX_SOURCES "src/NintendoSDK-NEX/*.cpp")
 
 add_library(NintendoSDK OBJECT
   ${NN_SOURCES}
-  ${NN_NEX_SOURCES}
+  ${NEX_SOURCES}
 
   include/nn/types.h
   include/nn/fs.h
@@ -319,6 +310,10 @@ target_compile_options(NintendoSDK PRIVATE -fno-strict-aliasing)
 target_compile_options(NintendoSDK PRIVATE -fno-exceptions)
 target_compile_options(NintendoSDK PRIVATE -Wall -Wextra)
 target_compile_options(NintendoSDK PRIVATE -Wno-invalid-offsetof)
+
+include_directories(include/)
+target_include_directories(NintendoSDK PUBLIC src/NintendoSDK-NEX/OnlineCore/include)
+target_include_directories(NintendoSDK PUBLIC src/NintendoSDK-NEX/RendezVous/include)
 
 if (NVN_API)
   target_compile_definitions(NintendoSDK PRIVATE NVN_API_${NVN_API})

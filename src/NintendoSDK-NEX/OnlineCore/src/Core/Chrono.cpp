@@ -1,4 +1,4 @@
-#include "OnlineCore/src/Core/Chrono.h"
+#include "NintendoSDK/src/NintendoSDK-NEX/OnlineCore/include/Core/Chrono.h"
 
 namespace nn::nex {
 Chrono::Chrono() {}

@@ -1,4 +1,4 @@
-#include "OnlineCore/src/Core/Plugin.h"
+#include "Core/Plugin.h"
 
 namespace nn::nex {
 Plugin::Plugin() {

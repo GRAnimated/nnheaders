@@ -1,4 +1,4 @@
-#include "OnlineCore/src/Platform/Core/Result.h"
+#include "Platform/Core/Result.h"
 
 namespace nn::nex {}
 
