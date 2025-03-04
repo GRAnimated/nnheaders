@@ -10,10 +10,13 @@ public:
     static u64 GetTime();
     void Reset();
     void RegisterTimeProvider(TimeProvider*);
-    void Multiply(float) const;
-    void Divide(float) const;
-    void Scale(float) const;
-    void ConvertTimeoutToDeadline(unsigned int);
-    void ConvertDeadlineToTimeout(Time);
+    void Multiply(f32) const;
+    void Divide(f32) const;
+    void Scale(f32) const;
+    static void ConvertTimeoutToDeadline(u32);
+    static void ConvertDeadlineToTimeout(Time);
+
+private:
+    u64 m_Time = 0;
 };
 }  // namespace nn::nex

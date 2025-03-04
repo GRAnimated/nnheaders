@@ -162,6 +162,7 @@ set(NN_NEX_SOURCES
   src/NintendoSDK-NEX/OnlineCore/src/Core/Plugin.cpp
   src/NintendoSDK-NEX/OnlineCore/src/Core/RootObject.cpp
   src/NintendoSDK-NEX/OnlineCore/src/Core/VersionInfo.cpp
+  src/NintendoSDK-NEX/OnlineCore/src/Platform/Core/Result.cpp
 )
 
 add_library(NintendoSDK OBJECT
