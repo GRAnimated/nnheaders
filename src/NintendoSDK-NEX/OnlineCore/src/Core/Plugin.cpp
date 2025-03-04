@@ -5,7 +5,7 @@ Plugin::Plugin() {
     s_pInstance = this;
 }
 
-Plugin::~Plugin() = default;
+Plugin::~Plugin() {}
 
 void Plugin::Unload() {}
 
