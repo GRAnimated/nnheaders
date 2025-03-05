@@ -53,6 +53,9 @@ public:
     void SetDefaultStringEncoding(unsigned int);
     void Trace(unsigned long);
 
+    // operator const char*() const { return m_String; }
+    const char* cstr() const { return m_String; }
+
 private:
     const char* m_String;
 };
