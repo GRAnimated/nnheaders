@@ -16,6 +16,8 @@ public:
     static void ConvertTimeoutToDeadline(u32);
     static void ConvertDeadlineToTimeout(Time);
 
+    u32 GetTimeVal() const { return m_Time; }
+
 private:
     u64 m_Time = 0;
 };
