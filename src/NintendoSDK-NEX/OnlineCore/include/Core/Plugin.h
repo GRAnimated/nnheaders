@@ -7,7 +7,7 @@ namespace nn::nex {
 class Plugin : public RootObject {
 public:
     Plugin();
-    ~Plugin() override;
+    virtual ~Plugin();
 
     virtual void pure_virtual1();
     virtual void pure_virtual2();

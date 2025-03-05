@@ -8,8 +8,8 @@ class LocalClock : public RootObject {
 public:
     static LocalClock* s_pInstance;
 
-    LocalClock();
-    ~LocalClock() override;
+    LocalClock() { m_Time = Time::GetTime(); }
+    virtual ~LocalClock();
 
     static void DeleteInstance();
 
