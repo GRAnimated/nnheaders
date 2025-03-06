@@ -101,7 +101,7 @@ void Platform::HostToNetwork(const u64* host, unsigned char* network) {
 void Platform::WarnObsoleteMethod(const char* a2, const char* a3) {
     _QLOG(EventLog::_2, "WARNING  Using obsolete API '%s', use '%s' instead", a2, a3);
     if (BadEvents::s_pInstance)
-        ++BadEvents::s_pInstance->field_c;
+        ++BadEvents::s_pInstance->field_0[3];
 }
 
 #define STATE_VECTOR_LENGTH 624

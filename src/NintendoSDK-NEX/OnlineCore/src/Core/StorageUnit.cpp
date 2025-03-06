@@ -25,7 +25,10 @@ bool StorageUnit::AppendData(const StorageUnit* source, StorageUnit* destination
     return 1;
 }
 
-bool StorageUnit::CopyData(const StorageUnit* unit1, StorageUnit* unit2) {}
+bool StorageUnit::CopyData(const StorageUnit* source, StorageUnit* destination) {
+    destination->Truncate();
+    return AppendData(source, destination);
+}
 
 bool StorageUnit::Reserve(u64) {
     return false;
