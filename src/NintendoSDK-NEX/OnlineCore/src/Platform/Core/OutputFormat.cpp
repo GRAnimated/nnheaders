@@ -12,10 +12,7 @@ OutputFormat::OutputFormat() {
     m_Time = SystemClock::GetTime()->GetTimeVal();
 }
 
-OutputFormat::~OutputFormat() {
-    m_Prefix = nullptr;
-    delete this;
-}
+OutputFormat::~OutputFormat() {}
 
 void OutputFormat::StartString(char* str, u32) {
     *str = 0;

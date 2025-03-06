@@ -4,7 +4,12 @@
 #include "nn/socket.h"
 
 namespace nn::nex {
-InterfaceInfo::InterfaceInfo() {}
+InterfaceInfo::InterfaceInfo() {
+    m_Address = 0;
+    m_BroadcastAddress = 0;
+    m_Mask = 0;
+    m_Flags = 0;
+}
 
 InterfaceInfo::~InterfaceInfo() {}
 

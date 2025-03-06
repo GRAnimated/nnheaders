@@ -28,10 +28,10 @@ public:
     void Trace(u64);
 
 private:
-    u32 m_Address = 0;
-    u32 m_BroadcastAddress = 0;
-    u32 m_Mask = 0;
-    u32 m_Flags = 0;
+    u32 m_Address;
+    u32 m_BroadcastAddress;
+    u32 m_Mask;
+    u32 m_Flags;
     String m_Name;
 };
 

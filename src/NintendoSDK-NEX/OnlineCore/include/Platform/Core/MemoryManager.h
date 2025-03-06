@@ -5,7 +5,7 @@
 namespace nn::nex {
 class MemoryManager {
 public:
-    enum _InstructionType : s32 {};
+    enum _InstructionType : u32 {};
 
     using fcnMalloc = void* (*)(unsigned long);
     using fcnFree = void* (*)(void*);
@@ -19,15 +19,15 @@ public:
     virtual ~MemoryManager();
     virtual void BeginProtection();
     virtual void EndProtection();
-    static void Allocate(ulong);
-    static void* GenericMalloc(ulong);
+    static void* Allocate(u64);
+    static void* GenericMalloc(u64);
     static void AllocateForPbPool(void*, fcnFree, void*);
     static void Free(void*);
     static void GenericFree(fcnFree, void*);
-    static void AllocateThreadSafe(ulong);
+    static void AllocateThreadSafe(u64);
     static void FreeThreadSafe(void*);
-    static void IncreaseMemUsage(ulong);
-    static void DecreaseMemUsage(ulong);
+    static void IncreaseMemUsage(u64);
+    static void DecreaseMemUsage(u64);
     static void GetDefaultMemoryManager();
     static void ShutdownDefaultMemoryManager();
     static void Trace();

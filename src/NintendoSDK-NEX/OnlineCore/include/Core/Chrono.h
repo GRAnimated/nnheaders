@@ -7,7 +7,7 @@ namespace nn::nex {
 class Chrono : public RootObject {
 public:
     Chrono();
-    ~Chrono() override;
+    virtual ~Chrono();
 
     void Reset();
     void Start();

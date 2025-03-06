@@ -14,11 +14,34 @@ MemoryManager::MemoryManager(const char* watermark) {
     s_eShutDownState = 0;
 }
 
-void* MemoryManager::GenericMalloc(unsigned long size) {
+void* MemoryManager::Allocate(u64 size) {
+    ulong aligned = size + 23 & ~7;
+
+    void* ptr = GenericMalloc(aligned);
+
+    *(void**)(ptr) = (void*)MemoryManager::s_fcnFree;
+    return (void*)(reinterpret_cast<u64*>(ptr) + 2);
+}
+
+void* MemoryManager::GenericMalloc(u64 size) {
     if (s_fcnMalloc)
         return s_fcnMalloc(size);
     else
         return malloc(size);
+}
+
+void MemoryManager::Free(void* ptr) {
+    if (ptr) {
+        void** func = reinterpret_cast<void**>(ptr) - 2;
+        void (*freeFunc)(void*) = reinterpret_cast<void (*)(void*)>(*func);
+        void* mem = static_cast<void*>(func);
+
+        if (freeFunc) {
+            freeFunc(mem);
+        } else {
+            free(mem);
+        }
+    }
 }
 
 void MemoryManager::GenericFree(fcnFree freeFunc, void* address) {
@@ -38,23 +61,23 @@ void MemoryManager::FreeThreadSafe(void* address) {
 
 void MemoryManager::Trace() {}
 
-const char* s_InstructionTypeStrings[11] = {"Unknown",
-                                            "DirectCall",
-                                            "UntrackedDirectCall",
-                                            "RootObjectNewDelete",
-                                            "RootObjectNewDeleteArray",
-                                            "GlobalNewDelete",
-                                            "GlobalNewDeleteArray",
-                                            "AllocatorClass",
-                                            "qSpecialNewDelete",
-                                            "qSpecialNewDeleteArray",
-                                            "qAllocFree"};
+static const char* s_InstructionTypeStrings[11] = {"Unknown",
+                                                   "DirectCall",
+                                                   "UntrackedDirectCall",
+                                                   "RootObjectNewDelete",
+                                                   "RootObjectNewDeleteArray",
+                                                   "GlobalNewDelete",
+                                                   "GlobalNewDeleteArray",
+                                                   "AllocatorClass",
+                                                   "qSpecialNewDelete",
+                                                   "qSpecialNewDeleteArray",
+                                                   "qAllocFree"};
 
 const char* MemoryManager::GetInstructionTypeString(_InstructionType instructionType) const {
-    if (instructionType > 10)
-        return "UNDEFINED INSTRUCTION TYPE!";
+    if (instructionType < 11)
+        return s_InstructionTypeStrings[(s32)instructionType];
     else
-        return s_InstructionTypeStrings[instructionType];
+        return "UNDEFINED INSTRUCTION TYPE!";
 }
 
 void MemoryManager::BeginProtection() {}

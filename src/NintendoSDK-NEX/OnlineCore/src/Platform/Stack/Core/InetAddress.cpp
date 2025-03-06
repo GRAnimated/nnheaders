@@ -34,8 +34,7 @@ InetAddress::InetAddress(u32 addr, u16 port) {
 InetAddress::~InetAddress() = default;
 
 u64 InetAddress::GetKey() const {
-    u64 addr = m_Attributes.addr;
-    return socket::InetNtohs(m_Attributes.port | addr << 32);
+    return ((u64)m_Attributes.addr << 32) | socket::InetNtohs(m_Attributes.port);
 }
 
 u16 InetAddress::GetPortNumber() const {
