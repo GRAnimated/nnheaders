@@ -37,65 +37,42 @@ nn::os::Tick Platform::GetTick() {
     return nn::os::GetSystemTick();
 }
 
-#include <cstring>
-
-inline u16 htons(u16 host) {
-    return (host >> 8) | (host << 8);
-}
-
-inline u32 ntnol(u32 host) {
-    return ((host >> 24) & 0xFF) | ((host >> 8) & 0xFF00) | ((host << 8) & 0xFF0000) |
-           ((host << 24) & 0xFF000000);
-}
-
-inline u64 htonll(u64 host) {
-    return ((host >> 56) & 0xFF) | ((host >> 40) & 0xFF00) | ((host >> 24) & 0xFF0000) |
-           ((host >> 8) & 0xFF000000) | ((host << 8) & 0xFF00000000) |
-           ((host << 24) & 0xFF0000000000) | ((host << 40) & 0xFF000000000000) |
-           ((host << 56) & 0xFF00000000000000);
-}
-
-inline u16 ntohs(u16 network) {
-    return htons(network);
-}
-
-inline u32 ntohl(u32 network) {
-    return ntnol(network);
-}
-
-inline u64 ntohll(u64 network) {
-    return htonll(network);
-}
-
-inline u16 _byteswap_ushort(u16 value) {
-    return (value >> 8) | (value << 8);
-}
-
 void Platform::NetworkToHost(unsigned const char* network, u16* host) {
-    *host = ntohs(*reinterpret_cast<const u16*>(network));
+    *host = (network[0] << 8) + network[1];
 }
 
 void Platform::NetworkToHost(unsigned const char* network, u32* host) {
-    *host = ntohl(*reinterpret_cast<const u32*>(network));
+    *host = (network[0] << 24) + (network[1] << 16) + (network[2] << 8) + network[3];
 }
 
 void Platform::NetworkToHost(unsigned const char* network, u64* host) {
-    *host = ntohll(*reinterpret_cast<const u64*>(network));
+    *host = ((u64)network[0] << 56) + ((u64)network[1] << 48) + ((u64)network[2] << 40) +
+                ((u64)network[3] << 32) + ((u64)network[4] << 24) + (network[5] << 16) +
+                (network[6] << 8) |
+            network[7];
 }
 
 void Platform::HostToNetwork(const u16* host, unsigned char* network) {
-    u16 network_value = htons(*host);
-    memcpy(network, &network_value, sizeof(u16));
+    network[0] = *host >> 8;
+    network[1] = *host;
 }
 
 void Platform::HostToNetwork(const u32* host, unsigned char* network) {
-    u32 network_value = ntnol(*host);
-    memcpy(network, &network_value, sizeof(u32));
+    network[0] = *host >> 24;
+    network[1] = *host >> 16;
+    network[2] = *host >> 8;
+    network[3] = *host;
 }
 
 void Platform::HostToNetwork(const u64* host, unsigned char* network) {
-    u64 network_value = htonll(*host);
-    memcpy(network, &network_value, sizeof(u64));
+    network[0] = *host >> 56;
+    network[1] = *host >> 48;
+    network[2] = *host >> 40;
+    network[3] = *host >> 32;
+    network[4] = *host >> 24;
+    network[5] = *host >> 16;
+    network[6] = *host >> 8;
+    network[7] = *host;
 }
 
 void Platform::WarnObsoleteMethod(const char* a2, const char* a3) {

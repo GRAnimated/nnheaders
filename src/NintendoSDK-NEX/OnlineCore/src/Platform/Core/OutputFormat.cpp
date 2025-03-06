@@ -9,7 +9,7 @@
 namespace nn::nex {
 OutputFormat::OutputFormat() {
     m_Prefix = nullptr;
-    m_Time = SystemClock::GetTime()->GetTimeVal();
+    m_Time = SystemClock::GetTime();
 }
 
 OutputFormat::~OutputFormat() {}

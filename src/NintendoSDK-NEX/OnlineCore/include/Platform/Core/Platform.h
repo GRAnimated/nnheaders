@@ -3,9 +3,6 @@
 #include <nn/os.h>
 #include "Platform/Core/RootObject.h"
 
-static u32 s_RNGState;
-static u32 s_RNGStateCounter;
-
 namespace nn::nex {
 class Platform : public RootObject {
 private:
