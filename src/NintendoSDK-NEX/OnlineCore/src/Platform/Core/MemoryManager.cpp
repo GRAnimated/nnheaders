@@ -3,7 +3,6 @@
 #include "Platform/Core/GlobalVariables.h"
 #include "Platform/Core/MutexPrimitive.h"
 #include "nn/mem.h"
-#include "nn/os/os_Mutex.h"
 
 namespace nn::nex {
 MemoryManager::MemoryManager(const char* watermark) {

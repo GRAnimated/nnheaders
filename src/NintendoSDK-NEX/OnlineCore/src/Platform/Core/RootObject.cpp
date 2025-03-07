@@ -4,36 +4,36 @@
 
 namespace nn::nex {
 
-void* RootObject::operator new(ulong size) {
+__attribute__((noinline)) void* RootObject::operator new(ulong size) {
     return MemoryManager::Allocate(size);
 }
 
-void RootObject::operator delete(void* ptr) {
+__attribute__((noinline)) void RootObject::operator delete(void* ptr) {
     MemoryManager::Free(ptr);
 }
 
 void* RootObject::operator new(ulong size, const char* a2, unsigned int a3) {
-    return operator new(size);
+    return MemoryManager::Allocate(size);
 }
 
 void* RootObject::operator new[](ulong size) {
-    return operator new(size);
+    return MemoryManager::Allocate(size);
 }
 
 void* RootObject::operator new[](ulong size, const char* a2, unsigned int a3) {
-    return operator new(size);
+    return MemoryManager::Allocate(size);
 }
 
 void RootObject::operator delete[](void* ptr) {
-    operator delete(ptr);
+    MemoryManager::Free(ptr);
 }
 
 void RootObject::operator delete(void* ptr, const char* a2, unsigned int a3) {
-    operator delete(ptr);
+    MemoryManager::Free(ptr);
 }
 
 void RootObject::operator delete[](void* ptr, const char* a2, unsigned int a3) {
-    operator delete(ptr);
+    MemoryManager::Free(ptr);
 }
 
 void* RootObject::operator new(ulong, nn::nex::RootObject::TargetPool) {}

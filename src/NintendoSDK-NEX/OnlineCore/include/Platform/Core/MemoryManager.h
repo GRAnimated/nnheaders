@@ -39,3 +39,10 @@ private:
     const char* field_18 = nullptr;
 };
 }  // namespace nn::nex
+
+extern "C" {
+void* QuazalCRTAlloc(u64);
+void* QuazalCRTRealloc(u64, void*);
+void QuazalCRTFree(void*);
+void* QuazalCRTCalloc(u64, u64);
+}

@@ -18,7 +18,7 @@ Platform* Platform::Instance() {
 }
 
 void Platform::CreateInstance() {
-    _Instance = new Platform();
+    _Instance = new Platform();  // RootObject::operator new should inline here
 }
 
 void Platform::DeleteInstance() {
