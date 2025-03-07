@@ -32,14 +32,9 @@ void* MemoryManager::GenericMalloc(u64 size) {
 void MemoryManager::Free(void* ptr) {
     if (ptr) {
         void** func = reinterpret_cast<void**>(ptr) - 2;
-        void (*freeFunc)(void*) = reinterpret_cast<void (*)(void*)>(*func);
         void* mem = static_cast<void*>(func);
 
-        if (freeFunc) {
-            freeFunc(mem);
-        } else {
-            free(mem);
-        }
+        GenericFree(reinterpret_cast<fcnFree>(*func), mem);
     }
 }
 

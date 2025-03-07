@@ -3,6 +3,12 @@
 #include "Platform/Core/RootObject.h"
 
 namespace nn::nex {
+template <typename T>
+void* SpecialNewArray(u32, T*, u32);
+
+template <typename T, T>
+void StrCopy(T*, const T*, u64);
+
 class String : public RootObject {
 public:
     class NoAllocTag;
@@ -27,31 +33,31 @@ public:
     void operator<(const nn::nex::String&) const;
     void operator+=(const nn::nex::String&);
 
-    void Truncate(unsigned long) const;
+    void Truncate(u64) const;
     void GetLength() const;
-    void Reserve(unsigned long);
+    void Reserve(u64);
     void SetBufferPtr(char*);
     void SetStringToPreReservedBuffer(const char*);
     void GetWideCharLength() const;
-    void CopyString(char*, unsigned long) const;
+    void CopyString(char*, u64) const;
     void CreateCopy(wchar_t**) const;
     void ReleaseCopy(wchar_t*);
-    void CopyString(wchar_t*, unsigned long) const;
+    void CopyString(wchar_t*, u64) const;
     void CreateCopy(char16_t**) const;
     void ReleaseCopy(char16_t*);
-    void CopyString(char16_t*, unsigned long) const;
+    void CopyString(char16_t*, u64) const;
     void ToUpper();
     void ToLower();
-    void FindSubstringCase(const char*, int) const;
+    void FindSubstringCase(const char*, s32) const;
     void FindSubstringNoCase(const char*) const;
-    void ByteArrayToBase64(unsigned const char*, unsigned long, char*, unsigned long);
-    void Base64ToByteArray(const char*, unsigned long, unsigned char*, unsigned long);
-    void Base64ToByteArray(const nn::nex::String&, unsigned char*, unsigned long);
+    void ByteArrayToBase64(unsigned const char*, u64, char*, u64);
+    void Base64ToByteArray(const char*, u64, u8*, u64);
+    void Base64ToByteArray(const nn::nex::String&, u8*, u64);
     void ContainsCase(const nn::nex::String&) const;
     void ToUInt64() const;
     void ContainsNoCase(const nn::nex::String&) const;
-    void SetDefaultStringEncoding(unsigned int);
-    void Trace(unsigned long);
+    void SetDefaultStringEncoding(u32);
+    void Trace(u64);
 
     // operator const char*() const { return m_String; }
     const char* cstr() const { return m_String; }
