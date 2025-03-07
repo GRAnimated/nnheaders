@@ -14,6 +14,6 @@ public:
     static void DeleteInstance();
 
 private:
-    Time m_Time;
+    u64 m_Time;
 };
 }  // namespace nn::nex

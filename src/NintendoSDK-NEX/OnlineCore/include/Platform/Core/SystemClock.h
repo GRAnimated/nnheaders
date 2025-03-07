@@ -17,18 +17,6 @@ public:
     static Time GetTimeImplCorrectless();
     static void Reset();
 
-    static Time GetTime() {
-        Time time;
-        if (s_needCorrection)
-            time = GetTimeImpl(false);
-        else
-            time = GetTimeImplCorrectless();
-        s_cachedTime = time;
-        return time;
-    }
-
-    operator u64() const { return GetTime().GetTimeVal(); }
-
     static nn::nex::TimeProvider* s_pTimeProvider;
     static Time s_cachedTime;
     static bool s_needCorrection;

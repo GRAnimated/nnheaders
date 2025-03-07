@@ -4,12 +4,11 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include "Platform/Core/SystemClock.h"
 
 namespace nn::nex {
 OutputFormat::OutputFormat() {
     m_Prefix = nullptr;
-    m_Time = SystemClock::GetTime();
+    m_ulTime = Time::GetTime();
 }
 
 OutputFormat::~OutputFormat() {}

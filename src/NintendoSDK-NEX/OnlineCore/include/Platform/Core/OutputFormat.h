@@ -50,7 +50,7 @@ private:
     bool m_bShowCID = 0;
     bool m_bShowPID = 0;
     const char* m_Prefix;
-    Time m_Time;
+    u64 m_ulTime;
 };
 
 }  // namespace nn::nex
