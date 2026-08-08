@@ -11,6 +11,7 @@
 namespace nn {
 namespace g3d {
 class ResMaterial;
+class ResSkeleton;
 
 typedef void* TextureRef;
 
@@ -25,7 +26,11 @@ public:
     void Reset(u32);
     nn::g3d::ResMaterial* FindMaterial(char const* materialName) const;
 
-    u8 _0[0x70];
+    const ResSkeleton* GetSkeleton() const { return mSkeleton; }
+
+    u8 _0[0x20];
+    const ResSkeleton* mSkeleton;
+    u8 _28[0x48];
 };
 }  // namespace g3d
 }  // namespace nn

@@ -12,6 +12,8 @@ class SkeletonObj;
 // TODO
 class ModelObj {
 public:
+    const ResModel* GetResModel() const { return m_ResModel; }
+
     SkeletonObj* GetSkeleton() const { return m_Skeleton; }
 
     s32 GetNumShapes() const { return m_NumShapes; }
